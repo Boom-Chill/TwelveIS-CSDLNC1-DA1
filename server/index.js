@@ -2,6 +2,7 @@ const sql = require('mssql/msnodesqlv8')
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const generateID = require('./utils/ganerateId.js')
 
 //config db
 const mssql = new sql.ConnectionPool({
@@ -91,6 +92,59 @@ app.get('/api/invoice/summary', async (req, res) => {
     res.send(result.recordsets[0])
   } catch (error) {
     console.log(error)
+  }
+})
+
+app.get('/api/products', async (req, res) => {
+  
+  try {
+      const products = await mssql.request().query(
+      `
+      select * from SanPham
+      `
+    )
+    res.send(products.recordsets[0])
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+app.post('/api/invoice/upload', async (req, res) => {
+  //console.log(req.body)
+
+  const customer = req.body.customer
+  const gInvoiceId = generateID.generateID(2 , 9)
+  const inVoiceID = `N\'${gInvoiceId}\'`
+  const cusTomerID = `N\'${generateID.generateID(2, 5)}\'`
+
+  const date = new Date().toISOString().slice(0, 19).replace('T', ' ')
+
+  let insertProductsScript = `
+  insert KhachHang values (${cusTomerID}, N'${customer.Ho}', N'${customer.Ten}', null, N'${customer.SoNha}', N'${customer.Duong}', N'${customer.Phuong}', N'Quận ${customer.Quan}', N'${customer.Tpho}', N'${customer.DienThoai}')
+
+  insert into HoaDon values (${inVoiceID}, ${cusTomerID}, '${date}', null)
+   `
+  let products = req.body.products
+
+  products.forEach((product) => {
+    const productID = `'${product.MaSP}'`
+    insertProductsScript += `insert into CT_HoaDon values (${inVoiceID}, ${productID}, ${product.SoLuong}, ${product.Gia}, ${product.GiaGiam ?? null}, null) `
+  })
+  
+  try {
+    const result = await mssql.request().query(
+      insertProductsScript
+    )
+    res.send({
+      mess: `Đơn hàng đã được ghi nhận, Mã đơn hàng của bạn là: ${gInvoiceId}`,
+      error: false,
+    })
+  } catch (error) {
+    console.log(error)
+    res.send({
+      mess: `Đơn hàng chưa được ghi nhận`,
+      error: true,
+    })
   }
 })
 
