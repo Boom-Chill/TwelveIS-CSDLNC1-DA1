@@ -1,0 +1,73 @@
+
+.ad-side-bar__wrapper{
+    z-index: 101;
+    position: fixed;
+    top: 0;
+    left: 0;
+    //background-color: black; // TEST
+
+    touch-action: none; // HACK set window touch none
+
+    .ad-side-bar{
+        z-index: 101;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        top: 6em;
+        left: 1em;
+        border-radius: 1em;
+        background-color: rgba(0,0,0,0.6);
+
+        &__tools{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            max-width: 108px;
+            
+            &--open {
+                transform: scale(1);
+                opacity: 1;
+                transition: 0.3s;
+            }
+            &--close {
+                transform: scale(0);
+                width: 0;
+                height: 0;
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        &__item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            font-size: 3em;
+            padding: 0.15em;
+            cursor: pointer;
+            color: white;
+        }
+
+    }
+}
+
+@media (max-width: 740px) {
+    .ad-side-bar__wrapper{
+        .ad-side-bar{
+            border-radius: 0.8em;
+            //flex-direction: row;
+            &__tools--open{
+                //flex-direction: row;
+            }
+            &__item{
+                font-size: 2.5em;
+            }
+        }
+    }
+}

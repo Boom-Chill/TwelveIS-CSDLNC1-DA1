@@ -1,0 +1,122 @@
+.products{
+    .product {
+        border: solid 1px #C1C1C1;
+        &__item{
+
+            .add {
+                line-height: 4px;
+                font-size: 16px;
+                font-weight: 500;
+                color: green;
+                &:hover {
+                    color: rgb(0, 102, 4);
+                }
+            }
+
+            .delete {
+                line-height: 4px;
+                font-size: 16px;
+                font-weight: 500;
+                color: red;
+                transform: rotate(45deg);
+                &:hover {
+                    color: rgb(167, 0, 0);
+                }
+            }
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            border-radius: 3px;
+          }
+          
+          tr:nth-child(even) {
+            background-color: #dddddd;
+          }
+
+         
+    }
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &-btn{
+        margin-top: 1em;
+        line-height: 2em;
+        background-color: red;
+        height: 2em;
+        width: 6em;
+        border-radius: 7px;
+        color: white;
+        font-weight: 500;
+        transition: 0.3s;
+        &:hover {
+            background-color: #d0ac1d;
+        }
+    }
+}
+
+.item-input {
+    height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //width: 2em;
+        margin: 0 0.5em;
+        input{
+            text-align:center;
+            width: 2em;
+            border: solid 1px #C1C1C1;
+        }
+    }
+
+    button{
+        background-color: white;
+        border: solid 1px #dddd;
+        transition: 0.2s;
+        cursor: pointer;
+        &:hover {
+            background-color:  #d38888;
+            color: white;
+        }
+    }
+    
+}
+
+.customer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-right: 1em;
+    }
+}
+
+.line {
+    margin-top: 1em;
+    border-bottom: solid 1px #C1C1C1;
+}
+
+.mess {
+    color: #d0ac1d;
+}
