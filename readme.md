@@ -22,7 +22,7 @@ config trên máy tính
 - ![Screenshot](cf1.png)
 - B2: mở bản computer management mở ô có màu xám (SQL Server Services)
 - ![Screenshot](cf2.png)
-- B3: double click vào SQL Server Browser qua tab service chỉnh start mode về automatic, sau đó cho khởi chạy như h
+- B3: double click vào SQL Server Browser qua tab service chỉnh start mode về automatic
 - ![Screenshot](cf3.png)
 - B3.5: Sau đó cho khởi chạy như hình (nhấn start)
 - ![Screenshot](cf4.png)
